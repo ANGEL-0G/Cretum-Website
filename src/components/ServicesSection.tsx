@@ -1,9 +1,14 @@
+import { useState } from "react";
+import { GVVModal } from "@/components/GVVModal";
+
 export function ServicesSection() {
+  const [gvvOpen, setGvvOpen] = useState(false);
+
   const services = [
-    { title: "GVV", subtitle: "Growth · Value · Volatility" },
-    { title: "MVP Private Equitity", subtitle: "" },
-    { title: "Trendrating Liscencing", subtitle: "" },
-    { title: "Wealth Managment", subtitle: "" },
+    { title: "GVV", subtitle: "Growth · Value · Volatility", onClick: () => setGvvOpen(true) },
+    { title: "MVP Private Equitity", subtitle: "", onClick: () => {} },
+    { title: "Trendrating Liscencing", subtitle: "", onClick: () => {} },
+    { title: "Wealth Managment", subtitle: "", onClick: () => {} },
   ];
 
   return (
@@ -18,6 +23,7 @@ export function ServicesSection() {
           {services.map((service) => (
             <div
               key={service.title}
+              onClick={service.onClick}
               className="bg-primary text-primary-foreground rounded-lg p-8 flex flex-col items-center justify-center min-h-[180px] hover:opacity-90 transition-opacity cursor-pointer"
             >
               <h3 className="text-2xl md:text-3xl font-bold text-center leading-tight">
@@ -32,6 +38,8 @@ export function ServicesSection() {
           ))}
         </div>
       </div>
+
+      <GVVModal open={gvvOpen} onOpenChange={setGvvOpen} />
     </section>
   );
 }
