@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      gvv_chart_data: {
+        Row: {
+          created_at: string | null
+          id: string
+          month: string
+          month_order: number
+          updated_at: string | null
+          valor: number
+          year: number
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          month: string
+          month_order: number
+          updated_at?: string | null
+          valor?: number
+          year?: number
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          month?: string
+          month_order?: number
+          updated_at?: string | null
+          valor?: number
+          year?: number
+        }
+        Relationships: []
+      }
+      gvv_documents: {
+        Row: {
+          created_at: string | null
+          file_path: string
+          file_url: string
+          id: string
+          name: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          file_path: string
+          file_url: string
+          id?: string
+          name: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          file_path?: string
+          file_url?: string
+          id?: string
+          name?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
