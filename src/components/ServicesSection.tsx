@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { GVVModal } from "@/components/GVVModal";
+import { MVPModal } from "@/components/MVPModal";
 
 export function ServicesSection() {
   const [gvvOpen, setGvvOpen] = useState(false);
+  const [mvpOpen, setMvpOpen] = useState(false);
 
   const services = [
     { title: "GVV", subtitle: "Growth · Value · Volatility", onClick: () => setGvvOpen(true) },
-    { title: "MVP Private Equitity", subtitle: "", onClick: () => {} },
+    { title: "MVP Private Equitity", subtitle: "", onClick: () => setMvpOpen(true) },
     { title: "Trendrating Liscencing", subtitle: "", onClick: () => {} },
     { title: "Wealth Managment", subtitle: "", onClick: () => {} },
   ];
@@ -40,6 +42,7 @@ export function ServicesSection() {
       </div>
 
       <GVVModal open={gvvOpen} onOpenChange={setGvvOpen} />
+      <MVPModal open={mvpOpen} onOpenChange={setMvpOpen} />
     </section>
   );
 }
