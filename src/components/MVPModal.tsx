@@ -43,18 +43,18 @@ export function MVPModal({ open, onOpenChange }: MVPModalProps) {
           <p className="text-sm text-foreground leading-relaxed">{t("mvp.desc")}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-3 mt-6">
+        <div className="grid grid-cols-2 gap-2 mt-6">
           {highlights.map((h) => (
-            <div key={h.textKey} className="flex items-center gap-3 bg-secondary/60 border border-border rounded-md px-4 py-3">
-              <h.icon className="w-5 h-5 text-primary shrink-0" />
-              <p className="text-xs font-medium text-foreground">{t(h.textKey)}</p>
+            <div key={h.textKey} className="flex flex-col items-start gap-1.5 bg-secondary/60 border border-border rounded-md p-3 min-w-0">
+              <h.icon className="w-4 h-4 text-primary shrink-0" />
+              <p className="text-[11px] font-medium text-foreground leading-snug break-words">{t(h.textKey)}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-primary/5 rounded-lg px-5 py-4 border border-primary/15 mt-6 space-y-3">
-          <p className="text-sm text-foreground leading-relaxed">{t("mvp.hq")}</p>
-          <p className="text-sm text-foreground leading-relaxed">{t("mvp.analysis")}</p>
+        <div className="bg-primary/5 rounded-lg px-4 py-3 border border-primary/15 mt-6 space-y-2 min-w-0 overflow-hidden">
+          <p className="text-xs text-foreground leading-relaxed break-words">{t("mvp.hq")}</p>
+          <p className="text-xs text-foreground leading-relaxed break-words">{t("mvp.analysis")}</p>
         </div>
 
         <div className="mt-8">
