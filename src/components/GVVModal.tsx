@@ -16,24 +16,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { supabase } from "@/integrations/supabase/client";
-
-const strategies = [
-  {
-    icon: TrendingUp,
-    title: "Crecimiento",
-    description: "Compañías de tecnología de alto crecimiento.",
-  },
-  {
-    icon: BarChart3,
-    title: "Valor",
-    description: "Compañías que generen valor a largo plazo.",
-  },
-  {
-    icon: Shield,
-    title: "Coberturas de Volatilidad",
-    description: "Reducción de riesgo vía Delta Hedging.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface GVVModalProps {
   open: boolean;
@@ -44,6 +27,13 @@ export function GVVModal({ open, onOpenChange }: GVVModalProps) {
   const [chartData, setChartData] = useState<{ month: string; valor: number }[]>([]);
   const [document, setDocument] = useState<{ name: string; file_url: string } | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
+
+  const strategies = [
+    { icon: TrendingUp, titleKey: "gvv.growth", descKey: "gvv.growth.desc" },
+    { icon: BarChart3, titleKey: "gvv.value", descKey: "gvv.value.desc" },
+    { icon: Shield, titleKey: "gvv.hedge", descKey: "gvv.hedge.desc" },
+  ];
 
   useEffect(() => {
     if (!open) return;
@@ -53,18 +43,9 @@ export function GVVModal({ open, onOpenChange }: GVVModalProps) {
   const fetchData = async () => {
     setLoading(true);
     const [chartRes, docRes] = await Promise.all([
-      supabase
-        .from("gvv_chart_data")
-        .select("month, month_order, valor")
-        .order("month_order", { ascending: true }),
-      supabase
-        .from("gvv_documents")
-        .select("name, file_url")
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle(),
+      supabase.from("gvv_chart_data").select("month, month_order, valor").order("month_order", { ascending: true }),
+      supabase.from("gvv_documents").select("name, file_url").order("created_at", { ascending: false }).limit(1).maybeSingle(),
     ]);
-
     if (chartRes.data) setChartData(chartRes.data);
     if (docRes.data) setDocument(docRes.data);
     setLoading(false);
@@ -74,42 +55,26 @@ export function GVVModal({ open, onOpenChange }: GVVModalProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-serif text-primary">
-            Growth, Value and Volatility (GVV)
-          </DialogTitle>
-          <p className="text-xs font-semibold text-muted-foreground tracking-widest uppercase mt-1">
-            Fondo Multiestratégico · Multidivisas · Valuado en USD
-          </p>
+          <DialogTitle className="text-3xl font-serif text-primary">{t("gvv.title")}</DialogTitle>
+          <p className="text-xs font-semibold text-muted-foreground tracking-widest uppercase mt-1">{t("gvv.subtitle")}</p>
         </DialogHeader>
 
-        <p className="text-sm text-muted-foreground leading-relaxed mt-1">
-          Fondo que invierte en tres estrategias complementarias para maximizar
-          rendimientos ajustados al riesgo en mercados globales.
-        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-1">{t("gvv.desc")}</p>
 
-        {/* Strategies — small horizontal cards */}
         <div className="flex flex-col sm:flex-row gap-2">
           {strategies.map((s) => (
-            <div
-              key={s.title}
-              className="flex items-center gap-3 bg-secondary/60 border border-border rounded-md px-4 py-3 flex-1"
-            >
+            <div key={s.titleKey} className="flex items-center gap-3 bg-secondary/60 border border-border rounded-md px-4 py-3 flex-1">
               <s.icon className="w-5 h-5 text-primary shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-foreground">{s.title}</p>
-                <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">
-                  {s.description}
-                </p>
+                <p className="text-xs font-semibold text-foreground">{t(s.titleKey)}</p>
+                <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">{t(s.descKey)}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Chart — main focus */}
         <div>
-          <h4 className="font-serif text-lg text-foreground mb-3">
-            Valor del Portafolio
-          </h4>
+          <h4 className="font-serif text-lg text-foreground mb-3">{t("gvv.chart.title")}</h4>
           {loading ? (
             <div className="h-64 flex items-center justify-center">
               <Loader2 className="w-6 h-6 animate-spin text-primary" />
@@ -119,67 +84,32 @@ export function GVVModal({ open, onOpenChange }: GVVModalProps) {
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(214 20% 88%)" />
-                  <XAxis
-                    dataKey="month"
-                    tick={{ fontSize: 12 }}
-                    stroke="hsl(215 12% 60%)"
-                  />
-                  <YAxis
-                    tick={{ fontSize: 12 }}
-                    stroke="hsl(215 12% 60%)"
-                    domain={["dataMin - 5", "dataMax + 5"]}
-                  />
+                  <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="hsl(215 12% 60%)" />
+                  <YAxis tick={{ fontSize: 12 }} stroke="hsl(215 12% 60%)" domain={["dataMin - 5", "dataMax + 5"]} />
                   <Tooltip
-                    contentStyle={{
-                      backgroundColor: "hsl(0 0% 100%)",
-                      border: "1px solid hsl(214 20% 85%)",
-                      borderRadius: "6px",
-                      fontSize: 13,
-                    }}
-                    formatter={(value: number) => [`$${value.toFixed(2)}`, "Valor"]}
+                    contentStyle={{ backgroundColor: "hsl(0 0% 100%)", border: "1px solid hsl(214 20% 85%)", borderRadius: "6px", fontSize: 13 }}
+                    formatter={(value: number) => [`$${value.toFixed(2)}`, t("gvv.chart.label")]}
                   />
-                  <Line
-                    type="monotone"
-                    dataKey="valor"
-                    stroke="hsl(214 60% 32%)"
-                    strokeWidth={2.5}
-                    dot={{ fill: "hsl(214 60% 32%)", r: 4 }}
-                    activeDot={{ r: 6 }}
-                  />
+                  <Line type="monotone" dataKey="valor" stroke="hsl(214 60% 32%)" strokeWidth={2.5} dot={{ fill: "hsl(214 60% 32%)", r: 4 }} activeDot={{ r: 6 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           )}
         </div>
 
-        {/* Philosophy */}
         <div className="bg-primary/5 rounded-lg px-5 py-4 border border-primary/15">
-          <p className="text-sm text-foreground leading-relaxed italic">
-            Cretum Partners invierte bajo la filosofía de crecimiento e inversión
-            a largo plazo, rodeado de confianza, seguridad y transparencia en un
-            ambiente protegido. Alcanzamos a ver lo que otros no pueden, esa es
-            nuestra ventaja competitiva.
-          </p>
+          <p className="text-sm text-foreground leading-relaxed italic">{t("gvv.philosophy")}</p>
         </div>
 
-        {/* Download */}
         {document ? (
-          <a
-            href={document.file_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-sm font-semibold hover:opacity-90 transition-opacity w-full justify-center"
-          >
+          <a href={document.file_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md text-sm font-semibold hover:opacity-90 transition-opacity w-full justify-center">
             <Download className="w-4 h-4" />
-            Descargar Carta Mensual de GVV
+            {t("gvv.download")}
           </a>
         ) : (
-          <button
-            disabled
-            className="flex items-center gap-2 px-6 py-3 bg-muted text-muted-foreground rounded-md text-sm font-medium w-full justify-center cursor-not-allowed"
-          >
+          <button disabled className="flex items-center gap-2 px-6 py-3 bg-muted text-muted-foreground rounded-md text-sm font-medium w-full justify-center cursor-not-allowed">
             <Download className="w-4 h-4" />
-            Carta Mensual no disponible aún
+            {t("gvv.noDoc")}
           </button>
         )}
       </DialogContent>
