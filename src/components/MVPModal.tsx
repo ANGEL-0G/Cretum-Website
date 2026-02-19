@@ -43,7 +43,7 @@ export function MVPModal({ open, onOpenChange }: MVPModalProps) {
           <p className="text-sm text-foreground leading-relaxed">{t("mvp.desc")}</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mt-6">
+        <div className="grid grid-cols-1 gap-3 mt-6">
           {highlights.map((h) => (
             <div key={h.textKey} className="flex items-center gap-3 bg-secondary/60 border border-border rounded-md px-4 py-3">
               <h.icon className="w-5 h-5 text-primary shrink-0" />
