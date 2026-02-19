@@ -33,7 +33,7 @@ export function MVPModal({ open, onOpenChange }: MVPModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto overflow-x-hidden">
         <DialogHeader className="space-y-2">
           <DialogTitle className="text-3xl font-serif text-primary">{t("mvp.title")}</DialogTitle>
           <p className="text-sm font-semibold text-muted-foreground tracking-widest uppercase">{t("mvp.subtitle")}</p>
