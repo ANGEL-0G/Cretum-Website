@@ -24,7 +24,7 @@ export function TrendratingModal({ open, onOpenChange }: TrendratingModalProps) 
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg w-[calc(100vw-2rem)] max-h-[90vh] overflow-y-auto overflow-x-hidden">
+      <DialogContent className="max-w-3xl w-[calc(100vw-2rem)] max-h-[90vh] overflow-y-auto overflow-x-hidden">
         <div className="w-full min-w-0">
           <DialogHeader className="space-y-2">
             <DialogTitle className="text-2xl font-serif text-primary">{t("tr.title")}</DialogTitle>
