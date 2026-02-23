@@ -33,28 +33,29 @@ export function MVPModal({ open, onOpenChange }: MVPModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto overflow-x-hidden">
+      <DialogContent className="max-w-lg w-[calc(100vw-2rem)] max-h-[90vh] overflow-y-auto overflow-x-hidden">
+        <div className="w-full min-w-0">
         <DialogHeader className="space-y-2">
-          <DialogTitle className="text-3xl font-serif text-primary">{t("mvp.title")}</DialogTitle>
+          <DialogTitle className="text-2xl font-serif text-primary">{t("mvp.title")}</DialogTitle>
           <p className="text-sm font-semibold text-muted-foreground tracking-widest uppercase">{t("mvp.subtitle")}</p>
         </DialogHeader>
 
-        <div className="mt-4 space-y-4">
-          <p className="text-sm text-foreground leading-relaxed">{t("mvp.desc")}</p>
+        <div className="mt-4">
+          <p className="text-sm text-foreground leading-relaxed break-words">{t("mvp.desc")}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-2 mt-6">
           {highlights.map((h) => (
-            <div key={h.textKey} className="flex flex-col items-start gap-1.5 bg-secondary/60 border border-border rounded-md p-3 min-w-0">
+            <div key={h.textKey} className="flex items-center gap-2 bg-secondary/60 border border-border rounded-md p-2.5 min-w-0">
               <h.icon className="w-4 h-4 text-primary shrink-0" />
-              <p className="text-[11px] font-medium text-foreground leading-snug break-words">{t(h.textKey)}</p>
+              <p className="text-[10px] font-medium text-foreground leading-tight break-words overflow-hidden min-w-0">{t(h.textKey)}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-primary/5 rounded-lg px-4 py-3 border border-primary/15 mt-6 space-y-2 min-w-0 overflow-hidden">
-          <p className="text-xs text-foreground leading-relaxed break-words">{t("mvp.hq")}</p>
-          <p className="text-xs text-foreground leading-relaxed break-words">{t("mvp.analysis")}</p>
+        <div className="bg-primary/5 rounded-lg px-4 py-3 border border-primary/15 mt-6 space-y-2">
+          <p className="text-xs text-foreground leading-relaxed break-words overflow-hidden">{t("mvp.hq")}</p>
+          <p className="text-xs text-foreground leading-relaxed break-words overflow-hidden">{t("mvp.analysis")}</p>
         </div>
 
         <div className="mt-8">
@@ -82,6 +83,7 @@ export function MVPModal({ open, onOpenChange }: MVPModalProps) {
               ))}
             </div>
           </div>
+        </div>
         </div>
       </DialogContent>
     </Dialog>
