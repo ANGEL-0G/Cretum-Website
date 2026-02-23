@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { GVVModal } from "@/components/GVVModal";
 import { MVPModal } from "@/components/MVPModal";
+import { TrendratingModal } from "@/components/TrendratingModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export function ServicesSection() {
   const [gvvOpen, setGvvOpen] = useState(false);
   const [mvpOpen, setMvpOpen] = useState(false);
+  const [trOpen, setTrOpen] = useState(false);
   const { t } = useLanguage();
 
   const services = [
     { title: "GVV", subtitle: "Growth · Value · Volatility", onClick: () => setGvvOpen(true) },
     { title: "MVP Private Equity", subtitle: "", onClick: () => setMvpOpen(true) },
-    { title: "Trendrating Licensing", subtitle: "", onClick: () => {} },
+    { title: "Trendrating Licensing", subtitle: "", onClick: () => setTrOpen(true) },
     { title: "Wealth Management", subtitle: "", onClick: () => {} },
   ];
 
@@ -43,6 +45,7 @@ export function ServicesSection() {
 
       <GVVModal open={gvvOpen} onOpenChange={setGvvOpen} />
       <MVPModal open={mvpOpen} onOpenChange={setMvpOpen} />
+      <TrendratingModal open={trOpen} onOpenChange={setTrOpen} />
     </section>
   );
 }
