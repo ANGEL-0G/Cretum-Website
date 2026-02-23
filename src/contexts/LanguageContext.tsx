@@ -88,7 +88,21 @@ const translations: Record<string, Record<Lang, string>> = {
     en: "Portfolio companies — always investing at the private stage",
   },
 
-  // Footer
+  // Trendrating Modal
+  "tr.title": { es: "TrendRating", en: "TrendRating" },
+  "tr.subtitle": { es: "Alpha Generating Software", en: "Alpha Generating Software" },
+  "tr.desc": {
+    es: "TrendRating es una empresa de tecnología financiera que ofrece una plataforma de análisis de tendencias para el mercado de valores. La plataforma utiliza un algoritmo de aprendizaje automático para identificar tendencias en los precios de las acciones, los índices y otros activos.",
+    en: "TrendRating is a financial technology company that offers a trend analysis platform for the stock market. The platform uses a machine learning algorithm to identify trends in stock prices, indices, and other assets.",
+  },
+  "tr.h1": { es: "Análisis de tendencias con IA", en: "AI-powered trend analysis" },
+  "tr.h2": { es: "Análisis de fundamentos", en: "Fundamental analysis" },
+  "tr.h3": { es: "Herramienta de backtesting", en: "Backtesting tool" },
+  "tr.h4": { es: "Estrategias de inversión", en: "Investment strategies" },
+  "tr.algo": {
+    es: "La plataforma de TrendRating proporciona un análisis fundamental de cada activo, incluyendo información sobre la empresa, la industria y el mercado. Su herramienta de backtesting permite a los inversores probar diferentes estrategias de inversión con datos históricos para optimizar sus decisiones.",
+    en: "TrendRating's platform provides fundamental analysis of each asset, including information about the company, industry, and market. Its backtesting tool allows investors to test different investment strategies with historical data to optimize their decisions.",
+  },
   "footer.desc": {
     es: "Passion Beyond Money — Gestión independiente de activos institucionales desde 2014.",
     en: "Passion Beyond Money — Independent institutional asset management since 2014.",
