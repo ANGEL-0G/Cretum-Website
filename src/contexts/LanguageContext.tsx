@@ -103,6 +103,22 @@ const translations: Record<string, Record<Lang, string>> = {
     es: "La plataforma de TrendRating proporciona un análisis fundamental de cada activo, incluyendo información sobre la empresa, la industria y el mercado. Su herramienta de backtesting permite a los inversores probar diferentes estrategias de inversión con datos históricos para optimizar sus decisiones.",
     en: "TrendRating's platform provides fundamental analysis of each asset, including information about the company, industry, and market. Its backtesting tool allows investors to test different investment strategies with historical data to optimize their decisions.",
   },
+  // Wealth Management Modal
+  "wm.title": { es: "Wealth Management", en: "Wealth Management" },
+  "wm.subtitle": { es: "Beyond Money", en: "Beyond Money" },
+  "wm.desc1": {
+    es: "Cretum Partners redefine la gestión de patrimonio con un enfoque centrado en la confianza como su valor central para el crecimiento sostenible. Su propuesta de Valor Agregado se manifiesta a través de la simplificación de situaciones y procesos financieros complejos, permitiendo a los clientes comprender, manejar y administrar sus activos de manera efectiva. La eficiencia impulsa su estrategia, identificando proactivamente las necesidades y oportunidades para lograr objetivos financieros de manera ágil, respaldada por un profundo conocimiento y análisis del mercado.",
+    en: "Cretum Partners redefines wealth management with an approach centered on trust as its core value for sustainable growth. Its Value-Added proposition is manifested through the simplification of complex financial situations and processes, enabling clients to understand, manage, and administer their assets effectively. Efficiency drives its strategy, proactively identifying needs and opportunities to achieve financial objectives agilely, backed by deep market knowledge and analysis.",
+  },
+  "wm.desc2": {
+    es: "El equipo de Cretum Partners, con una trayectoria destacada, ha cultivado relaciones duraderas con clientes, intermediarios y contrapartes, fortaleciendo su capacidad para anticipar y superar obstáculos. Esta experiencia, combinada con la independencia de conflictos de interés, posiciona a la empresa para ofrecer soluciones personalizadas, maximizando resultados y minimizando riesgos. En conjunto, Cretum Partners se destaca como un líder en la gestión de patrimonio, ofreciendo no solo resultados financieros sólidos, sino también relaciones arraigadas en la confianza y la excelencia a lo largo del tiempo.",
+    en: "The Cretum Partners team, with an outstanding track record, has cultivated lasting relationships with clients, intermediaries, and counterparts, strengthening its ability to anticipate and overcome obstacles. This experience, combined with independence from conflicts of interest, positions the firm to offer personalized solutions, maximizing results and minimizing risks. Overall, Cretum Partners stands out as a leader in wealth management, offering not only solid financial results but also relationships rooted in trust and excellence over time.",
+  },
+  "wm.h1": { es: "Confianza como valor central", en: "Trust as a core value" },
+  "wm.h2": { es: "Simplificación de procesos complejos", en: "Simplification of complex processes" },
+  "wm.h3": { es: "Independencia de conflictos de interés", en: "Independence from conflicts of interest" },
+  "wm.h4": { es: "Relaciones duraderas con clientes", en: "Lasting client relationships" },
+
   "footer.desc": {
     es: "Passion Beyond Money — Gestión independiente de activos institucionales desde 2014.",
     en: "Passion Beyond Money — Independent institutional asset management since 2014.",
