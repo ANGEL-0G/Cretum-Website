@@ -123,6 +123,22 @@ const translations: Record<string, Record<Lang, string>> = {
   "wm.h3": { es: "Independencia de conflictos de interés", en: "Independence from conflicts of interest" },
   "wm.h4": { es: "Relaciones duraderas con clientes", en: "Lasting client relationships" },
 
+  // Team Modal
+  "team.title": { es: "Nuestro Equipo", en: "Our Team" },
+  "team.subtitle": { es: "Conoce a los profesionales detrás de Cretum Partners", en: "Meet the professionals behind Cretum Partners" },
+  "team.m1.name": { es: "Carlos García", en: "Carlos García" },
+  "team.m1.role": { es: "Director General / CEO", en: "Chief Executive Officer" },
+  "team.m2.name": { es: "María López", en: "María López" },
+  "team.m2.role": { es: "Directora de Inversiones / CIO", en: "Chief Investment Officer" },
+  "team.m3.name": { es: "Andrés Martínez", en: "Andrés Martínez" },
+  "team.m3.role": { es: "Director de Operaciones / COO", en: "Chief Operating Officer" },
+  "team.m4.name": { es: "Laura Hernández", en: "Laura Hernández" },
+  "team.m4.role": { es: "Analista Senior de Inversiones", en: "Senior Investment Analyst" },
+  "team.m5.name": { es: "Roberto Sánchez", en: "Roberto Sánchez" },
+  "team.m5.role": { es: "Director de Riesgos / CRO", en: "Chief Risk Officer" },
+  "team.m6.name": { es: "Patricia Ruiz", en: "Patricia Ruiz" },
+  "team.m6.role": { es: "Directora de Relación con Clientes", en: "Client Relations Director" },
+
   "footer.desc": {
     es: "Passion Beyond Money — Gestión independiente de activos institucionales desde 2014.",
     en: "Passion Beyond Money — Independent institutional asset management since 2014.",
