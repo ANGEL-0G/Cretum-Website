@@ -5,6 +5,7 @@ import { GVVModal } from "@/components/GVVModal";
 import { MVPModal } from "@/components/MVPModal";
 import { TrendratingModal } from "@/components/TrendratingModal";
 import { WealthManagementModal } from "@/components/WealthManagementModal";
+import { TeamModal } from "@/components/TeamModal";
 
 interface SubMenuItem {
   labelKey: string;
@@ -14,8 +15,9 @@ interface SubMenuItem {
 
 interface MenuItem {
   labelKey: string;
-  href: string;
+  href?: string;
   submenu?: SubMenuItem[];
+  action?: string;
 }
 
 const menuItems: MenuItem[] = [
@@ -30,15 +32,7 @@ const menuItems: MenuItem[] = [
       { labelKey: "nav.wealth", action: "wm" },
     ],
   },
-  {
-    labelKey: "nav.equipo",
-    href: "#equipo",
-    submenu: [
-      { labelKey: "nav.directivos", href: "#directivos" },
-      { labelKey: "nav.analistas", href: "#analistas" },
-      { labelKey: "nav.carreras", href: "#carreras" },
-    ],
-  },
+  { labelKey: "nav.equipo", action: "team" },
   { labelKey: "nav.contacto", href: "#contacto" },
 ];
 
@@ -49,6 +43,7 @@ export function Navbar() {
   const [mvpOpen, setMvpOpen] = useState(false);
   const [trOpen, setTrOpen] = useState(false);
   const [wmOpen, setWmOpen] = useState(false);
+  const [teamOpen, setTeamOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { lang, setLang, t } = useLanguage();
 
@@ -57,6 +52,7 @@ export function Navbar() {
     mvp: () => setMvpOpen(true),
     tr: () => setTrOpen(true),
     wm: () => setWmOpen(true),
+    team: () => setTeamOpen(true),
   };
 
   const handleEnter = (label: string) => {
@@ -103,13 +99,22 @@ export function Navbar() {
                 onMouseEnter={() => item.submenu && handleEnter(item.labelKey)}
                 onMouseLeave={handleLeave}
               >
-                <a
-                  href={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
-                >
-                  {label}
-                  {item.submenu && <ChevronDown className="w-3 h-3" />}
-                </a>
+                {item.action && !item.submenu ? (
+                  <button
+                    onClick={() => modalActions[item.action!]?.()}
+                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                  >
+                    {label}
+                  </button>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                  >
+                    {label}
+                    {item.submenu && <ChevronDown className="w-3 h-3" />}
+                  </a>
+                )}
 
                 {item.submenu && openMenu === item.labelKey && (
                   <div className="absolute top-full left-0 mt-1 w-56 bg-card border border-border rounded-md shadow-lg py-1 z-50 animate-fade-in">
@@ -173,9 +178,18 @@ export function Navbar() {
         <div className="md:hidden border-t border-border bg-card px-6 py-4 space-y-2 animate-fade-in">
           {menuItems.map((item) => (
             <div key={item.labelKey}>
-              <a href={item.href} className="block py-2 text-sm font-medium text-foreground" onClick={() => !item.submenu && setMobileOpen(false)}>
-                {t(item.labelKey)}
-              </a>
+              {item.action && !item.submenu ? (
+                <button
+                  onClick={() => { modalActions[item.action!]?.(); setMobileOpen(false); }}
+                  className="block py-2 text-sm font-medium text-foreground w-full text-left"
+                >
+                  {t(item.labelKey)}
+                </button>
+              ) : (
+                <a href={item.href} className="block py-2 text-sm font-medium text-foreground" onClick={() => !item.submenu && setMobileOpen(false)}>
+                  {t(item.labelKey)}
+                </a>
+              )}
               {item.submenu && (
                 <div className="pl-4 space-y-1">
                   {item.submenu.map((sub) =>
@@ -205,6 +219,7 @@ export function Navbar() {
     <MVPModal open={mvpOpen} onOpenChange={setMvpOpen} />
     <TrendratingModal open={trOpen} onOpenChange={setTrOpen} />
     <WealthManagementModal open={wmOpen} onOpenChange={setWmOpen} />
+    <TeamModal open={teamOpen} onOpenChange={setTeamOpen} />
     </>
   );
 }
