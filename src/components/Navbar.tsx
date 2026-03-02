@@ -175,18 +175,18 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-border bg-card px-6 py-4 space-y-2 animate-fade-in">
+        <div className="md:hidden absolute left-0 right-0 top-16 z-50 bg-[hsl(215,60%,30%)] px-6 py-4 space-y-2 animate-fade-in shadow-xl">
           {menuItems.map((item) => (
             <div key={item.labelKey}>
               {item.action && !item.submenu ? (
                 <button
                   onClick={() => { modalActions[item.action!]?.(); setMobileOpen(false); }}
-                  className="block py-2 text-sm font-medium text-foreground w-full text-left"
+                  className="block py-2 text-sm font-medium text-white w-full text-left"
                 >
                   {t(item.labelKey)}
                 </button>
               ) : (
-                <a href={item.href} className="block py-2 text-sm font-medium text-foreground" onClick={() => !item.submenu && setMobileOpen(false)}>
+                <a href={item.href} className="block py-2 text-sm font-medium text-white" onClick={() => !item.submenu && setMobileOpen(false)}>
                   {t(item.labelKey)}
                 </a>
               )}
@@ -194,11 +194,11 @@ export function Navbar() {
                 <div className="pl-4 space-y-1">
                   {item.submenu.map((sub) =>
                     sub.href ? (
-                      <a key={sub.labelKey} href={sub.href} className="block py-1.5 text-sm text-muted-foreground hover:text-primary" onClick={() => setMobileOpen(false)}>
+                      <a key={sub.labelKey} href={sub.href} className="block py-1.5 text-sm text-white/70 hover:text-white" onClick={() => setMobileOpen(false)}>
                         {t(sub.labelKey)}
                       </a>
                     ) : (
-                      <button key={sub.labelKey} onClick={() => handleSubClick(sub)} className="block w-full text-left py-1.5 text-sm text-muted-foreground hover:text-primary">
+                      <button key={sub.labelKey} onClick={() => handleSubClick(sub)} className="block w-full text-left py-1.5 text-sm text-white/70 hover:text-white">
                         {t(sub.labelKey)}
                       </button>
                     )
@@ -207,9 +207,9 @@ export function Navbar() {
               )}
             </div>
           ))}
-          <div className="flex gap-2 pt-2">
-            <button onClick={() => setLang("en")} className={`w-9 h-9 rounded-full border border-primary text-xs font-semibold ${lang === "en" ? "bg-primary text-primary-foreground" : "text-primary"}`}>EN</button>
-            <button onClick={() => setLang("es")} className={`w-9 h-9 rounded-full border border-primary text-xs font-semibold ${lang === "es" ? "bg-primary text-primary-foreground" : "text-primary"}`}>ES</button>
+          <div className="flex gap-2 pt-2 border-t border-white/20 mt-2">
+            <button onClick={() => setLang("en")} className={`w-9 h-9 rounded-full border border-white/50 text-xs font-semibold ${lang === "en" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>EN</button>
+            <button onClick={() => setLang("es")} className={`w-9 h-9 rounded-full border border-white/50 text-xs font-semibold ${lang === "es" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>ES</button>
           </div>
         </div>
       )}
