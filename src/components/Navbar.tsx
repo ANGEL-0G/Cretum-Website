@@ -173,47 +173,47 @@ export function Navbar() {
           </svg>
         </button>
       </div>
-
-      {mobileOpen && (
-        <div className="md:hidden fixed inset-0 top-16 z-50 bg-[hsl(215,60%,30%)] px-6 py-8 space-y-4 animate-fade-in flex flex-col">
-          {menuItems.map((item) => (
-            <div key={item.labelKey}>
-              {item.action && !item.submenu ? (
-                <button
-                  onClick={() => { modalActions[item.action!]?.(); setMobileOpen(false); }}
-                  className="block py-2 text-sm font-medium text-white w-full text-left"
-                >
-                  {t(item.labelKey)}
-                </button>
-              ) : (
-                <a href={item.href} className="block py-2 text-sm font-medium text-white" onClick={() => !item.submenu && setMobileOpen(false)}>
-                  {t(item.labelKey)}
-                </a>
-              )}
-              {item.submenu && (
-                <div className="pl-4 space-y-1">
-                  {item.submenu.map((sub) =>
-                    sub.href ? (
-                      <a key={sub.labelKey} href={sub.href} className="block py-1.5 text-sm text-white/70 hover:text-white" onClick={() => setMobileOpen(false)}>
-                        {t(sub.labelKey)}
-                      </a>
-                    ) : (
-                      <button key={sub.labelKey} onClick={() => handleSubClick(sub)} className="block w-full text-left py-1.5 text-sm text-white/70 hover:text-white">
-                        {t(sub.labelKey)}
-                      </button>
-                    )
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
-          <div className="flex gap-2 pt-2 border-t border-white/20 mt-2">
-            <button onClick={() => setLang("en")} className={`w-9 h-9 rounded-full border border-white/50 text-xs font-semibold ${lang === "en" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>EN</button>
-            <button onClick={() => setLang("es")} className={`w-9 h-9 rounded-full border border-white/50 text-xs font-semibold ${lang === "es" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>ES</button>
-          </div>
-        </div>
-      )}
     </nav>
+
+    {mobileOpen && (
+      <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-[100] bg-[hsl(215,60%,30%)] px-8 py-10 flex flex-col gap-6 animate-fade-in overflow-y-auto">
+        {menuItems.map((item) => (
+          <div key={item.labelKey}>
+            {item.action && !item.submenu ? (
+              <button
+                onClick={() => { modalActions[item.action!]?.(); setMobileOpen(false); }}
+                className="block py-2 text-lg font-semibold text-white w-full text-left"
+              >
+                {t(item.labelKey)}
+              </button>
+            ) : (
+              <a href={item.href} className="block py-2 text-lg font-semibold text-white" onClick={() => !item.submenu && setMobileOpen(false)}>
+                {t(item.labelKey)}
+              </a>
+            )}
+            {item.submenu && (
+              <div className="pl-5 mt-2 space-y-2 border-l-2 border-white/30">
+                {item.submenu.map((sub) =>
+                  sub.href ? (
+                    <a key={sub.labelKey} href={sub.href} className="block py-2 text-base text-white/80 hover:text-white" onClick={() => setMobileOpen(false)}>
+                      {t(sub.labelKey)}
+                    </a>
+                  ) : (
+                    <button key={sub.labelKey} onClick={() => handleSubClick(sub)} className="block w-full text-left py-2 text-base text-white/80 hover:text-white">
+                      {t(sub.labelKey)}
+                    </button>
+                  )
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+        <div className="flex gap-3 pt-4 border-t border-white/20 mt-auto">
+          <button onClick={() => setLang("en")} className={`w-10 h-10 rounded-full border border-white/50 text-sm font-semibold ${lang === "en" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>EN</button>
+          <button onClick={() => setLang("es")} className={`w-10 h-10 rounded-full border border-white/50 text-sm font-semibold ${lang === "es" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>ES</button>
+        </div>
+      </div>
+    )}
 
     <GVVModal open={gvvOpen} onOpenChange={setGvvOpen} />
     <MVPModal open={mvpOpen} onOpenChange={setMvpOpen} />
