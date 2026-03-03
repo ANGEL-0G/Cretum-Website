@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import cretumLogo from "@/assets/Cretum_Logo.png";
 
 export function Footer() {
   const { t, lang } = useLanguage();
@@ -12,8 +13,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="font-serif text-xl font-bold text-background mb-2">CRETUM</h3>
-            <p className="text-xs tracking-[0.3em] text-background/60 mb-4">PARTNERS</p>
+            <img src={cretumLogo} alt="Cretum Partners" className="h-16 w-auto brightness-0 invert mb-4" />
             <p className="text-sm text-background/70 leading-relaxed">{t("footer.desc")}</p>
           </div>
           <div>
