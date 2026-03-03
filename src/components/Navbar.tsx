@@ -175,7 +175,7 @@ export function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden absolute left-0 right-0 top-16 z-50 bg-[hsl(215,60%,30%)] px-6 py-4 space-y-2 animate-fade-in shadow-xl">
+        <div className="md:hidden fixed inset-0 top-16 z-50 bg-[hsl(215,60%,30%)] px-6 py-8 space-y-4 animate-fade-in flex flex-col">
           {menuItems.map((item) => (
             <div key={item.labelKey}>
               {item.action && !item.submenu ? (
