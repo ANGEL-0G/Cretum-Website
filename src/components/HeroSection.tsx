@@ -12,7 +12,7 @@ export function HeroSection() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <h1 className="text-5xl md:text-7xl font-serif mb-6 animate-fade-in">
-          <em className="text-primary not-italic">{t("hero.title.1")}</em>{" "}
+          <em className="text-primary not-italic font-serif font-medium">{t("hero.title.1")}</em>{" "}
           <span className="text-foreground">{t("hero.title.2")}</span>
         </h1>
 
@@ -30,6 +30,6 @@ export function HeroSection() {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
