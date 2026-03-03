@@ -84,7 +84,7 @@ export function Navbar() {
     <nav className="bg-card/95 backdrop-blur-md border-b border-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <a href="#inicio" className="flex items-center">
-          <img src={cretumLogo} alt="Cretum Partners" className="h-12 w-auto" />
+          <img src={cretumLogo} alt="Cretum Partners" className="h-20 w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-1">
