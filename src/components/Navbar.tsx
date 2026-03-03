@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import cretumLogo from "@/assets/Cretum_Logo.png";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { GVVModal } from "@/components/GVVModal";
@@ -82,11 +83,8 @@ export function Navbar() {
     <>
     <nav className="bg-card/95 backdrop-blur-md border-b border-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        <a href="#inicio" className="flex items-center gap-2">
-          <div className="flex flex-col">
-            <span className="text-xl font-serif font-bold tracking-wide text-primary">CRETUM</span>
-            <span className="text-[10px] tracking-[0.3em] text-muted-foreground -mt-1">PARTNERS</span>
-          </div>
+        <a href="#inicio" className="flex items-center">
+          <img src={cretumLogo} alt="Cretum Partners" className="h-12 w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-1">
