@@ -1,44 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import heroImage from "@/assets/hero-skyline.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export function HeroSection() {
   const { t } = useLanguage();
-  const blocksRef = useRef<HTMLDivElement>(null);
-  const [activeBlock, setActiveBlock] = useState(0);
 
   const blocks = [
     { key: "hero.p1", icon: "🏛" },
     { key: "hero.p2", icon: "📈" },
   ];
 
-  useEffect(() => {
-    const container = blocksRef.current;
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = Number(entry.target.getAttribute("data-index"));
-            setActiveBlock(idx);
-          }
-        });
-      },
-      { root: container, threshold: 0.6 }
-    );
-
-    const items = container.querySelectorAll("[data-index]");
-    items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <>
       {/* Full-screen title */}
       <section
         id="inicio"
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="snap-start relative h-screen flex items-center justify-center overflow-hidden"
       >
         <div
           className="absolute inset-0 bg-cover bg-center scale-105"
@@ -84,51 +61,20 @@ export function HeroSection() {
         </div>
       </section>
 
-      {/* Snap-scroll description blocks */}
-      <section className="relative bg-background">
-        <div
-          ref={blocksRef}
-          className="snap-y snap-mandatory overflow-y-auto"
-          style={{ height: "100vh" }}
+      {/* Description blocks */}
+      {blocks.map((block) => (
+        <section
+          key={block.key}
+          className="snap-start h-screen flex items-center justify-center px-6 bg-background"
         >
-          {blocks.map((block, i) => (
-            <div
-              key={block.key}
-              data-index={i}
-              className="snap-start h-screen flex items-center justify-center px-6"
-            >
-              <div
-                className={`max-w-3xl mx-auto transition-all duration-700 ease-out ${
-                  activeBlock === i
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-30 translate-y-8"
-                }`}
-              >
-                <span className="text-5xl md:text-6xl block mb-6">
-                  {block.icon}
-                </span>
-                <p className="text-lg md:text-2xl leading-relaxed text-foreground/90 font-light">
-                  {t(block.key)}
-                </p>
-              </div>
-            </div>
-          ))}
-
-          {/* Progress dots */}
-          <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
-            {blocks.map((_, i) => (
-              <div
-                key={i}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  activeBlock === i
-                    ? "bg-primary scale-125"
-                    : "bg-foreground/20"
-                }`}
-              />
-            ))}
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="text-5xl md:text-6xl block mb-6">{block.icon}</span>
+            <p className="text-lg md:text-2xl leading-relaxed text-foreground/90 font-light">
+              {t(block.key)}
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
     </>
   );
 }

@@ -52,13 +52,15 @@ export function Navbar() {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    const container = document.querySelector('.snap-y');
+    if (!container) return;
     const handleScroll = () => {
-      const currentY = window.scrollY;
+      const currentY = container.scrollTop;
       setVisible(currentY < lastScrollY.current || currentY < 10);
       lastScrollY.current = currentY;
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   const modalActions: Record<string, () => void> = {

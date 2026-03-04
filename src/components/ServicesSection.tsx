@@ -20,7 +20,7 @@ export function ServicesSection() {
 
 
   return (
-    <section id="servicios" className="py-24 bg-background">
+    <section id="servicios" className="snap-start min-h-screen flex items-center py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-2xl md:text-4xl font-serif text-foreground mb-20 max-w-3xl">
           <em className="text-primary not-italic font-bold">Cretum Partners</em>{" "}

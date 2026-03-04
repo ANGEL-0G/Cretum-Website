@@ -9,7 +9,7 @@ export function Footer() {
     : ["Home", "Services", "Our Team", "Contact"];
 
   return (
-    <footer id="contacto" className="bg-foreground py-16">
+    <footer id="contacto" className="snap-start min-h-screen flex items-center bg-foreground py-16">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
