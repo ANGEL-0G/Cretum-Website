@@ -28,7 +28,7 @@ export function HeroSection() {
             <em className="text-primary not-italic font-serif font-medium block text-7xl">
               {t("hero.title.1")}
             </em>
-            <span className="text-foreground text-4xl">{t("hero.title.2")}</span>
+            <span className="text-foreground text-6xl">{t("hero.title.2")}</span>
           </h1>
 
           <div
