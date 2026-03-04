@@ -24,11 +24,11 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background" />
 
         <div className="relative z-10 text-center px-6">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif tracking-tight animate-fade-in">
-            <em className="text-primary not-italic font-serif font-medium block">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif tracking-tight animate-fade-in mt-0">
+            <em className="text-primary not-italic font-serif font-medium block text-7xl">
               {t("hero.title.1")}
             </em>
-            <span className="text-foreground">{t("hero.title.2")}</span>
+            <span className="text-foreground text-4xl">{t("hero.title.2")}</span>
           </h1>
 
           <div
