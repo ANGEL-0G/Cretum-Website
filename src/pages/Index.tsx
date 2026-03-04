@@ -9,6 +9,7 @@ const Index = () => {
     <LanguageProvider>
       <div className="min-h-screen bg-background">
         <Navbar />
+        <div className="h-16" />
         <HeroSection />
         <ServicesSection />
         <Footer />
