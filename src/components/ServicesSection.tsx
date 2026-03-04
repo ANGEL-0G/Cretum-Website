@@ -35,7 +35,7 @@ export function ServicesSection() {
             className="bg-primary text-primary-foreground rounded-xl h-[120px] md:h-[200px] p-4 md:p-8 flex flex-col items-center justify-center hover:opacity-90 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-lg">
             
               <h3 className="text-sm md:text-3xl font-bold text-center leading-tight w-full">
-                <span className="block max-w-[190px] mx-auto text-3xl">{service.title}</span>
+                <span className="block max-w-[190px] mx-auto text-2xl">{service.title}</span>
               </h3>
               {service.subtitle &&
             <p className="md:text-sm mt-1 md:mt-3 text-primary-foreground/80 text-center max-w-[190px] text-sm">{service.subtitle}</p>
