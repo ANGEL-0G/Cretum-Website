@@ -7,9 +7,8 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 const Index = () => {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-background">
+      <div className="h-screen overflow-y-auto snap-y snap-mandatory">
         <Navbar />
-        <div className="h-16" />
         <HeroSection />
         <ServicesSection />
         <Footer />
