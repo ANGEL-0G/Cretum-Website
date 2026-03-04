@@ -94,7 +94,7 @@ export function Navbar() {
 
   return (
     <>
-    <nav className={`bg-card/95 backdrop-blur-md border-b border-border fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+    <nav className={`bg-card/95 backdrop-blur-md border-b border-border fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-out ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <a href="#inicio" className="flex items-center">
           <img src={cretumLogo} alt="Cretum Partners" className="h-20 w-auto" />
@@ -113,14 +113,14 @@ export function Navbar() {
                 {item.action && !item.submenu ? (
                   <button
                     onClick={() => modalActions[item.action!]?.()}
-                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-md hover:bg-primary hover:text-primary-foreground active:scale-95 transition-all duration-200"
                   >
                     {label}
                   </button>
                 ) : (
                   <a
                     href={item.href}
-                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-md hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-md hover:bg-primary hover:text-primary-foreground active:scale-95 transition-all duration-200"
                   >
                     {label}
                     {item.submenu && <ChevronDown className="w-3 h-3" />}
@@ -158,7 +158,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-2">
           <button
             onClick={() => setLang("en")}
-            className={`w-9 h-9 rounded-full border border-primary text-xs font-semibold transition-colors ${
+            className={`w-9 h-9 rounded-full border border-primary text-xs font-semibold transition-all duration-200 active:scale-90 ${
               lang === "en" ? "bg-primary text-primary-foreground" : "text-primary hover:bg-primary hover:text-primary-foreground"
             }`}
           >
@@ -166,7 +166,7 @@ export function Navbar() {
           </button>
           <button
             onClick={() => setLang("es")}
-            className={`w-9 h-9 rounded-full border border-primary text-xs font-semibold transition-colors ${
+            className={`w-9 h-9 rounded-full border border-primary text-xs font-semibold transition-all duration-200 active:scale-90 ${
               lang === "es" ? "bg-primary text-primary-foreground" : "text-primary hover:bg-primary hover:text-primary-foreground"
             }`}
           >
@@ -186,19 +186,22 @@ export function Navbar() {
       </div>
     </nav>
 
-    {mobileOpen && (
-      <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-[100] bg-[hsl(215,60%,30%)] px-8 py-10 flex flex-col gap-6 animate-fade-in overflow-y-auto">
-        {menuItems.map((item) => (
-          <div key={item.labelKey}>
+    <div
+      className={`md:hidden fixed inset-x-0 top-16 bottom-0 z-[100] bg-[hsl(215,60%,30%)] px-8 py-10 flex flex-col gap-6 overflow-y-auto transition-all duration-300 ease-out ${
+        mobileOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
+      }`}
+    >
+        {menuItems.map((item, i) => (
+          <div key={item.labelKey} className="animate-fade-in" style={{ animationDelay: `${i * 60}ms`, animationFillMode: 'both' }}>
             {item.action && !item.submenu ? (
               <button
                 onClick={() => { modalActions[item.action!]?.(); setMobileOpen(false); }}
-                className="block py-2 text-lg font-semibold text-white w-full text-left"
+                className="block py-2 text-lg font-semibold text-white w-full text-left active:scale-95 transition-transform duration-150"
               >
                 {t(item.labelKey)}
               </button>
             ) : (
-              <a href={item.href} className="block py-2 text-lg font-semibold text-white" onClick={() => !item.submenu && setMobileOpen(false)}>
+              <a href={item.href} className="block py-2 text-lg font-semibold text-white active:scale-95 transition-transform duration-150" onClick={() => !item.submenu && setMobileOpen(false)}>
                 {t(item.labelKey)}
               </a>
             )}
@@ -206,11 +209,11 @@ export function Navbar() {
               <div className="pl-5 mt-2 space-y-2 border-l-2 border-white/30">
                 {item.submenu.map((sub) =>
                   sub.href ? (
-                    <a key={sub.labelKey} href={sub.href} className="block py-2 text-base text-white/80 hover:text-white" onClick={() => setMobileOpen(false)}>
+                    <a key={sub.labelKey} href={sub.href} className="block py-2 text-base text-white/80 hover:text-white active:scale-95 transition-all duration-150" onClick={() => setMobileOpen(false)}>
                       {t(sub.labelKey)}
                     </a>
                   ) : (
-                    <button key={sub.labelKey} onClick={() => handleSubClick(sub)} className="block w-full text-left py-2 text-base text-white/80 hover:text-white">
+                    <button key={sub.labelKey} onClick={() => handleSubClick(sub)} className="block w-full text-left py-2 text-base text-white/80 hover:text-white active:scale-95 transition-all duration-150">
                       {t(sub.labelKey)}
                     </button>
                   )
@@ -219,12 +222,11 @@ export function Navbar() {
             )}
           </div>
         ))}
-        <div className="flex gap-3 pt-4 border-t border-white/20 mt-auto">
-          <button onClick={() => setLang("en")} className={`w-10 h-10 rounded-full border border-white/50 text-sm font-semibold ${lang === "en" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>EN</button>
-          <button onClick={() => setLang("es")} className={`w-10 h-10 rounded-full border border-white/50 text-sm font-semibold ${lang === "es" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>ES</button>
+        <div className="flex gap-3 pt-4 border-t border-white/20 mt-auto animate-fade-in" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
+          <button onClick={() => setLang("en")} className={`w-10 h-10 rounded-full border border-white/50 text-sm font-semibold active:scale-90 transition-all duration-200 ${lang === "en" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>EN</button>
+          <button onClick={() => setLang("es")} className={`w-10 h-10 rounded-full border border-white/50 text-sm font-semibold active:scale-90 transition-all duration-200 ${lang === "es" ? "bg-white text-[hsl(215,60%,30%)]" : "text-white"}`}>ES</button>
         </div>
       </div>
-    )}
 
     <GVVModal open={gvvOpen} onOpenChange={setGvvOpen} />
     <MVPModal open={mvpOpen} onOpenChange={setMvpOpen} />
