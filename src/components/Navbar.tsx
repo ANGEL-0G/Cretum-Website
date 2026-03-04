@@ -48,6 +48,19 @@ export function Navbar() {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { lang, setLang, t } = useLanguage();
 
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setVisible(currentY < lastScrollY.current || currentY < 10);
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const modalActions: Record<string, () => void> = {
     gvv: () => setGvvOpen(true),
     mvp: () => setMvpOpen(true),
@@ -81,7 +94,7 @@ export function Navbar() {
 
   return (
     <>
-    <nav className="bg-card/95 backdrop-blur-md border-b border-border sticky top-0 z-50">
+    <nav className={`bg-card/95 backdrop-blur-md border-b border-border fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <a href="#inicio" className="flex items-center">
           <img src={cretumLogo} alt="Cretum Partners" className="h-20 w-auto" />
